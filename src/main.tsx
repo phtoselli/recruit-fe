@@ -6,11 +6,13 @@ import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import App from "./App.tsx";
-import Home from "./modules/admin/Home.tsx";
 import List from "./modules/admin/List.tsx";
 import ErrorPage from "./modules/ErrorPage.tsx";
+import AdminHome from "./modules/admin/Home.tsx";
+import ClientHome from "./modules/client/Home.tsx";
 import Register from "./modules/admin/Register.tsx";
 import AdminLayout from "./components/AdminLayout.tsx";
+import ClientLayout from "./components/ClientLayout.tsx";
 
 const router = createBrowserRouter([
   {
@@ -24,7 +26,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true, // Rota padrão
-        element: <Home />,
+        element: <AdminHome />,
       },
       {
         path: 'register',
@@ -33,6 +35,16 @@ const router = createBrowserRouter([
       {
         path: 'list',
         element: <List />,
+      },
+    ],
+  },
+  {
+    path: '/client',
+    element: <ClientLayout />,
+    children: [
+      {
+        index: true, // Rota padrão
+        element: <ClientHome />,
       },
     ],
   },
