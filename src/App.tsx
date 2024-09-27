@@ -1,7 +1,7 @@
 export default function App() {
   return (
     <div>
-      <p>App</p>
+      App
     </div>
   );
 }
