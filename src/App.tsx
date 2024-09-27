@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { Button } from "antd";
 import { Link } from "react-router-dom";
 
@@ -13,3 +14,12 @@ export default function App() {
     </div>
   );
 }
+=======
+export default function App() {
+  return (
+    <div>
+      <p>Hello world! 3</p>
+    </div>
+  );
+}
+>>>>>>> 8df652d1237810e27111b1cefd9963ec81cf7f54
