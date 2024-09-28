@@ -60,7 +60,7 @@ export const userLogin = (loginData: Login) => {
     })
     .catch((error) => {
       message.destroy();
-      message.error(error.message || "Erro ao efetuar login.", 4);
+      return message.error(error.message || "Erro ao efetuar login.", 4);
     });
 };
 
