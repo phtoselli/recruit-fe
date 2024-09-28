@@ -5,9 +5,9 @@ A **IA Recruta** é uma aplicação desenvolvida em React que visa otimizar o pr
 ## Tecnologias Utilizadas
 
 - **React**: Biblioteca para construir interfaces de usuário.
+- **React Router Dom**: Biblioteca para gerenciamento de rotas.
 - **Ant Design**: Biblioteca de componentes UI para React.
 - **Axios**: Biblioteca para fazer requisições HTTP.
-- **React Router Dom**: Biblioteca para gerenciamento de rotas.
 - **Lucide React**: Conjunto de ícones para enriquecer a interface.
 
 ## Acesso ao Deploy do Projeto
