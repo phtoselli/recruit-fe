@@ -1,11 +1,22 @@
-export interface Job {
+import { Company } from "./company";
+import { User } from "./user";
 
+export interface Job {
+  id?: number;
+  name: string;
+  description: string;
+  position: string;
+  education: string;
+  createDate: Date;
+  expireDate: Date;
+  status: string;
+  company?: Company;
+  companyDescription?: string;
+  users?: User[];
 }
 
 export interface Filter {
-
-}
-
-export interface Login {
-
+  name?: string;
+  startDate?: Date;
+  endDate?: Date;
 }
