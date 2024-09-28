@@ -1,7 +1,6 @@
-import { Button, Card, Flex, Form, Image, Input, message } from "antd";
-import { userLogin } from "../../service/user";
+import { Button, Card, Flex, Form, Image, Input } from "antd";
 import { useForm } from "antd/es/form/Form";
-import { Link, redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Text from "antd/es/typography/Text";
 
 import logo from '../../assets/logo-black.svg';
@@ -10,19 +9,19 @@ export default function Login() {
   const [form] = useForm();
 
   const onFinish = () => {
-    const formValues = form.getFieldsValue();
+    // const formValues = form.getFieldsValue();
 
-    if (formValues.email && formValues.password) {
-      userLogin({email: formValues.email, password: formValues.password})
-        .then((dataUser: any) => {
-          if (dataUser) {
-            localStorage.setItem('user', JSON.stringify(dataUser));
-            return redirect(`/${dataUser.user.role}`);
-          }
-        });
-    } else {
-      message.warning('Informe corretamente o email e senha.', 4);
-    }
+    // if (formValues.email && formValues.password) {
+    //   userLogin({email: formValues.email, password: formValues.password})
+    //     .then((dataUser: any) => {
+    //       if (dataUser) {
+    //         localStorage.setItem('user', JSON.stringify(dataUser));
+    //         return redirect(`/${dataUser.user.role}`);
+    //       }
+    //     });
+    // } else {
+    //   message.warning('Informe corretamente o email e senha.', 4);
+    // }
   }
 
   return (
