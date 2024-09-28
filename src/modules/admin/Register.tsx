@@ -43,59 +43,12 @@ export default function Register() {
               </Col>
 
               <Col span={24}>
-                <Form.Item label="Formação acadêmica" name="academic">
+                <Form.Item label="Descrição da Empresa" name="empresa">
                   <TextArea rows={4} />
                 </Form.Item>
               </Col>
-
               <Col span={24}>
-                <Form.Item label="Corpo do curriculo Lattes" name="resume">
-                  <TextArea rows={4} />
-                </Form.Item>
-              </Col>
-            </Row>
-
-            <Divider>Endereço</Divider>
-
-            <Row gutter={[16, 8]}>
-              <Col span={8}>
-                <Form.Item label="Digite seu CEP" name="cep">
-                  <Input />
-                </Form.Item>
-              </Col>
-
-              <Col span={18}>
-                <Form.Item label="Endereço" name="address">
-                  <Input />
-                </Form.Item>
-              </Col>
-
-              <Col span={6}>
-                <Form.Item label="Número" name="number">
-                  <Input />
-                </Form.Item>
-              </Col>
-
-              <Col span={8}>
-                <Form.Item label="Complemento" name="complement">
-                  <Input />
-                </Form.Item>
-              </Col>
-
-              <Col span={8}>
-                <Form.Item label="Cidade" name="city">
-                  <Input />
-                </Form.Item>
-              </Col>
-
-              <Col span={8}>
-                <Form.Item label="Estado" name="state">
-                  <Input />
-                </Form.Item>
-              </Col>
-
-              <Col span={24}>
-                <Button onClick={() => ""}>Cadastrar-se</Button>
+                <Button onClick={() => ""}>Salvar</Button>
               </Col>
             </Row>
           </Form>
