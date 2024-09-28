@@ -13,7 +13,7 @@ export default function Home() {
   const [jobsList, setJobsList] = useState<Job[] | null>(null);
 
   useEffect(() => {
-    getJobs().then((data: Job[]) => {
+    getJobs().then((data: any) => {
       setJobsList(data);
     });
   }, [])

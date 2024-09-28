@@ -1,4 +1,4 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, redirect } from 'react-router-dom';
 
 import logo from '../assets/logo-white.svg';
 import Text from 'antd/es/typography/Text';
@@ -10,7 +10,11 @@ const { Header, Content } = Layout;
 export default function ClientLayout() {
   const {token: { colorBgContainer }} = theme.useToken();
 
-  const user = 'User';
+  const user = JSON.parse(localStorage.getItem('user')!);
+
+  if (!user) {
+    return redirect("/login");
+  }
 
   return (
     <Layout>
@@ -21,7 +25,7 @@ export default function ClientLayout() {
           </Col>
           <Col span={12}>
             <Flex align='center' justify='end' style={{height: '100%'}}>
-              <Text style={{color: '#f0f0f0'}}>Olá {user}, seja bem vindo(a)!</Text>
+              <Text style={{color: '#f0f0f0'}}>Olá {user?.name}, seja bem vindo(a)!</Text>
             </Flex>
           </Col>
         </Row>

@@ -1,4 +1,4 @@
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { Link, Outlet, redirect, useLocation } from "react-router-dom";
 
 import logo from '../assets/logo-white.svg';
 
@@ -10,10 +10,13 @@ const { Header, Content, Sider } = Layout;
 
 export default function AdminLayout() {
   const { pathname } = useLocation();
+  const user = JSON.parse(localStorage.getItem('user')!);
+
+  if (!user) {
+    return redirect("/login");
+  }
 
   const {token: { colorBgContainer }} = theme.useToken();
-
-  const user = 'Usuário';
 
   const menuItems = [
     {
@@ -65,7 +68,7 @@ export default function AdminLayout() {
       <Layout>
         <Header style={{backgroundColor: colorBgContainer, padding: '16px'}}>
           <Flex>
-            <Text>Olá {user}, bem vindo(a) de volta!</Text>
+            <Text>Olá {user?.name}, bem vindo(a) de volta!</Text>
           </Flex>
         </Header>
 

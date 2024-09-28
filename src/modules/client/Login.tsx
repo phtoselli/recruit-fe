@@ -1,7 +1,7 @@
 import { Button, Card, Flex, Form, Image, Input, message } from "antd";
 import { userLogin } from "../../service/user";
 import { useForm } from "antd/es/form/Form";
-import { Link } from "react-router-dom";
+import { Link, redirect } from "react-router-dom";
 import Text from "antd/es/typography/Text";
 
 import logo from '../../assets/logo-black.svg';
@@ -14,9 +14,10 @@ export default function Login() {
 
     if (formValues.email && formValues.password) {
       userLogin({email: formValues.email, password: formValues.password})
-        .then((data: any) => {
-          if (data) {
-            localStorage.setItem('user', JSON.stringify(data));
+        .then((dataUser: any) => {
+          if (dataUser) {
+            localStorage.setItem('user', JSON.stringify(dataUser));
+            return redirect(`/${dataUser.user.role}`);
           }
         });
     } else {
