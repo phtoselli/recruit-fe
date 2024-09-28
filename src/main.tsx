@@ -13,6 +13,7 @@ import ClientHome from "./modules/client/Home.tsx";
 import Register from "./modules/admin/Register.tsx";
 import AdminLayout from "./components/AdminLayout.tsx";
 import ClientLayout from "./components/ClientLayout.tsx";
+import Job from "./modules/client/Job.tsx";
 
 const router = createBrowserRouter([
   {
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
       {
         index: true, // Rota padrão
         element: <ClientHome />,
+      },
+      {
+        path: 'job/:id',
+        element: <Job />,
       },
     ],
   },
