@@ -1,7 +1,7 @@
 import { Button } from "antd";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { getJobs } from "./service";
+import { getJobs } from "./service/job";
 
 export default function App() {
   const [jobsList, setJobsList] = useState(null);

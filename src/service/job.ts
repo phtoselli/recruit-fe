@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Filter, Job, Login } from '../utils/types/job';
+import { Filter, Job } from '../utils/types/job';
 import { message } from 'antd';
 
 const API_URL = 'https://fiap-backend-recruta-production.up.railway.app';
@@ -117,20 +117,5 @@ export const getUsersByJob = (jobId: string) => {
     .catch((error: any) => {
       message.destroy();
       message.error(error.message || "Erro ao buscar por usuários na vaga.", 4)
-    })
-};
-
-// Função para login de usuário
-export const userLogin = (loginData: Login) => {
-  message.loading('Efetuando login...', 0)
-  axios.post(`${API_URL}/user/login`, loginData)
-    .then((response) => {
-      message.destroy();
-      message.success('Login efetuado com sucesso!', 4);
-      return response.data; // token
-    })
-    .catch((error: any) => {
-      message.destroy();
-      message.error(error.message || "Erro ao efetuar login.", 4)
     })
 };
