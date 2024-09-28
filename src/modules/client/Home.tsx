@@ -10,16 +10,13 @@ import { useEffect, useState } from "react";
 import { getJobs } from "../../service/job";
 
 export default function Home() {
-  const [jobs, setJobs] = useState<Job[] | null>(null);
+  const [jobsList, setJobsList] = useState<Job[] | null>(null);
 
   useEffect(() => {
-    getJobs()
-      .then((result: Job[] | void) => {
-        if (result) {
-          setJobs(result);
-        }
-      });
-  }, []);
+    getJobs().then((data: any) => {
+      setJobsList(data);
+    });
+  }, [])
 
   return (
     <Row>
@@ -40,7 +37,7 @@ export default function Home() {
             pagination={{
               pageSize: 3,
             }}
-            dataSource={jobs?.map((job: Job) => ({
+            dataSource={jobsList?.map((job: Job) => ({
               index: job.id,
               title: job.name,
               description: `criado em ${job.createDate}`,

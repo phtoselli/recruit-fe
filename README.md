@@ -1,50 +1,131 @@
-# React + TypeScript + Vite
+# Recruit Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A **Recruit Platform** é uma aplicação desenvolvida em React que visa otimizar o processo de recrutamento utilizando inteligência artificial. Nosso objetivo é facilitar a conexão entre empresas e candidatos, proporcionando uma experiência mais eficiente e personalizada.
 
-Currently, two official plugins are available:
+## Tecnologias Utilizadas
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **React**: Biblioteca para construir interfaces de usuário.
+- **Ant Design**: Biblioteca de componentes UI para React.
+- **Axios**: Biblioteca para fazer requisições HTTP.
+- **React Router Dom**: Biblioteca para gerenciamento de rotas.
+- **Lucide React**: Conjunto de ícones para enriquecer a interface.
 
-## Expanding the ESLint configuration
+## Acesso ao Deploy do Projeto
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Você pode acessar a versão em produção do projeto através do seguinte link:
 
-- Configure the top-level `parserOptions` property like this:
+[https://recruit-fe.vercel.app/](https://recruit-fe.vercel.app/)
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-});
-```
+## Como Rodar o Projeto Localmente
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+Para rodar o projeto em sua máquina local, siga os passos abaixo:
 
-```js
-// eslint.config.js
-import react from "eslint-plugin-react";
+1. **Clone o repositório**:
+   ```bash
+   git clone https://github.com/phtoselli/recruit-fe.git
+   cd recruit-fe
+   ```
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: "18.3" } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs["jsx-runtime"].rules,
-  },
-});
-```
+2. **Instale as dependências**:
+   ```bash
+   npm install
+   ```
+
+3. **Execute o projeto**:
+   ```bash
+   npm run dev
+   ```
+
+## Endpoints da API
+
+### Empresas
+
+- **Criar empresa**
+  - `POST /company/register`
+  - Cria uma nova empresa com os dados fornecidos.
+
+- **Listar empresas**
+  - `GET /company`
+  - Retorna uma lista de todas as empresas cadastradas.
+
+- **Listar empresa por ID**
+  - `GET /company/:id`
+  - Retorna os detalhes de uma empresa específica.
+
+- **Atualizar empresa**
+  - `PUT /company/:id`
+  - Atualiza os dados de uma empresa existente.
+
+- **Deletar empresa**
+  - `DELETE /company/:id`
+  - Remove uma empresa do registro.
+
+- **Filtrar empresas**
+  - `POST /company/filter`
+  - Filtra empresas com base em critérios fornecidos.
+
+### Vagas
+
+- **Criar vaga**
+  - `POST /job/register`
+  - Cria uma nova vaga com os dados fornecidos.
+
+- **Listar todas as vagas**
+  - `GET /job`
+  - Retorna uma lista de todas as vagas disponíveis.
+
+- **Listar vaga por ID**
+  - `GET /job/:id`
+  - Retorna os detalhes de uma vaga específica.
+
+- **Atualizar vaga**
+  - `PUT /job/:id`
+  - Atualiza os dados de uma vaga existente.
+
+- **Deletar vaga**
+  - `DELETE /job/:id`
+  - Remove uma vaga do registro.
+
+- **Aplicar a uma vaga**
+  - `POST /job/:id/apply`
+  - Permite que um usuário se candidate a uma vaga.
+
+- **Filtrar vagas por data**
+  - `POST /job/filter`
+  - Filtra vagas com base em critérios fornecidos.
+
+- **Buscar usuários por vaga**
+  - `GET /job/:id/users`
+  - Retorna uma lista de usuários que se candidataram a uma vaga específica.
+
+### Usuários
+
+- **Listar todos os usuários**
+  - `GET /user`
+  - Retorna uma lista de todos os usuários cadastrados.
+
+- **Listar usuário por ID**
+  - `GET /user/:id`
+  - Retorna os detalhes de um usuário específico.
+
+- **Registrar novo usuário**
+  - `POST /user/register`
+  - Cria um novo usuário com os dados fornecidos.
+
+- **Login de usuário**
+  - `POST /user/login`
+  - Realiza o login de um usuário existente.
+
+- **Atualizar usuário**
+  - `PUT /user/:id`
+  - Atualiza os dados de um usuário existente.
+
+- **Deletar usuário**
+  - `DELETE /user/:id`
+  - Remove um usuário do registro.
+
+- **Filtrar usuários**
+  - `POST /user/filter`
+  - Filtra usuários com base em critérios fornecidos.
+
+<!-- ## Autores -->

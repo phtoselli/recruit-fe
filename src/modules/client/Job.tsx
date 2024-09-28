@@ -5,14 +5,33 @@ import Text from "antd/es/typography/Text";
 import Title from "antd/es/typography/Title";
 import TextArea from "antd/es/input/TextArea";
 import Paragraph from "antd/es/typography/Paragraph";
+import { applyToJob } from "../../service/job";
+import { useParams } from "react-router-dom";
 
 export default function Job() {
   const [form] = useForm();
+  const params = useParams();
+
+  const user = JSON.parse(localStorage.getItem('user')!);
+
+  // const [jobInfo, setJobInfo] = useState<any | null>(null);
 
   const onSubmit = () => {
     const formValues = form.getFieldsValue();
-    console.log(formValues);
+
+    const userData = {
+      name: formValues.name,
+    }
+
+    if (formValues && params.id) {
+      applyToJob(params.id, user.id, userData)
+    }
   }
+
+  // Implementar chamada para pegar informações da Vaga
+  // useEffect(() => {
+  //   getJobById(params.id).then((data: any) => setJobInfo(data));
+  // }, []);
 
   return (
     <Row gutter={[16, 16]}>

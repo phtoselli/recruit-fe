@@ -44,7 +44,7 @@ export const getJobById = (id: string) => {
     })
     .catch((error: any) => {
       message.destroy();
-      message.error(error.message || 'Erro ao buscar vaga', 4);
+      return message.error(error.message || 'Erro ao buscar vaga', 4);
     })
 };
 
@@ -77,9 +77,9 @@ export const deleteJob = (id: string) => {
 };
 
 // Função para aplicar a uma vaga
-export const applyToJob = (jobId: string, userId: string) => {
+export const applyToJob = (jobId: string, userId: string, userData: any) => {
   message.loading('Aplicando para vaga...', 0);
-  axios.post(`${API_URL}/job/${jobId}/apply`, { id: userId })
+  axios.post(`${API_URL}/job/${jobId}/apply`, { id: userId, userData })
     .then(() => {
       message.destroy();
       message.success('Vaga aplicada!', 4);
