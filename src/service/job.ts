@@ -3,7 +3,7 @@ import { Filter, Job } from "../utils/types/job";
 import { message } from "antd";
 
 // const API_URL = 'https://fiap-backend-recruta-production.up.railway.app';
-const API_URL = "http://localhost:8081";
+const API_URL = "http://localhost:8080";
 
 // Função para criar uma vaga
 export const createJob = (jobData: Job) => {
