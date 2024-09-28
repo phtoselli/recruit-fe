@@ -1,31 +1,30 @@
-import { Button, Card, Flex, Form, Image, Input, message } from "antd";
+import { Button, Card, Flex, Form, Image, Input } from "antd";
 import { useForm } from "antd/es/form/Form";
-import { Link, redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Text from "antd/es/typography/Text";
 
 import logo from '../../assets/logo-black.svg';
-import { registerUser } from "../../service/user";
 
 export default function Register() {
   const [form] = useForm();
 
   const onFinish = () => {
-    const formValues = form.getFieldsValue();
+    // const formValues = form.getFieldsValue();
 
-    if (formValues.name && formValues.email && formValues.password) {
-      registerUser({
-        name: formValues.name,
-        email: formValues.email,
-        password: formValues.password,
-      })
-        .then((data: any) => {
-          if (data) {
-            return redirect('/login');
-          }
-        });
-    } else {
-      message.warning('Informe corretamente o email e senha.', 4);
-    }
+    // if (formValues.name && formValues.email && formValues.password) {
+    //   registerUser({
+    //     name: formValues.name,
+    //     email: formValues.email,
+    //     password: formValues.password,
+    //   })
+    //     .then((data: any) => {
+    //       if (data) {
+    //         return redirect('/login');
+    //       }
+    //     });
+    // } else {
+    //   message.warning('Informe corretamente o email e senha.', 4);
+    // }
   }
 
   return (

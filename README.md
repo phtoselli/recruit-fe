@@ -1,6 +1,6 @@
-# Recruit Platform
+# IA Recruta
 
-A **Recruit Platform** é uma aplicação desenvolvida em React que visa otimizar o processo de recrutamento utilizando inteligência artificial. Nosso objetivo é facilitar a conexão entre empresas e candidatos, proporcionando uma experiência mais eficiente e personalizada.
+A **IA Recruta** é uma aplicação desenvolvida em React que visa otimizar o processo de recrutamento utilizando inteligência artificial. Nosso objetivo é facilitar a conexão entre empresas e candidatos, proporcionando uma experiência mais eficiente e personalizada.
 
 ## Tecnologias Utilizadas
 
