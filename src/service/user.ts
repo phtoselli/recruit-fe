@@ -21,19 +21,18 @@ export const getAllUsers = () => {
 };
 
 // Função para localizar um usuário por ID
-export const getUserById = (id: string) => {
+export const getUserById = async (id: string) => {
   message.loading("Buscando usuário...", 0);
-  axios
-    .get(`${API_URL}/user/${id}`)
-    .then((result) => {
-      message.destroy();
-      message.success("Usuário encontrado com sucesso!", 4);
-      return result.data;
-    })
-    .catch((error) => {
-      message.destroy();
-      message.error(error.message || "Erro ao buscar usuário.", 4);
-    });
+  try {
+    const result = await axios.get(`${API_URL}/user/${id}`);
+    message.destroy();
+    message.success("Usuário encontrado com sucesso!", 4);
+    return result.data; // Retorna os dados do usuário
+  } catch (error: any) {
+    message.destroy();
+    message.error(error.message || "Erro ao buscar usuário.", 4);
+    return undefined; // Retorna undefined ou um valor padrão se houver erro
+  }
 };
 
 // Função para registrar um novo usuário

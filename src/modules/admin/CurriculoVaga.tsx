@@ -1,41 +1,61 @@
-
 import "./css/CurriculoVaga.css"; // Arquivo CSS para estilos
 import { FiMail, FiPhone, FiMoreHorizontal } from "react-icons/fi"; // Ícones
 import fotomulher from '../../assets/CurriculoFoto.svg';
 import fotomapa from '../../assets/User_Locations.svg';
+import { getUserById } from "../../service/user";
+import { Link } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import { User as UserType } from "../../utils/types/user";
+import { useParams } from "react-router-dom";
 
-const CandidateProfile = () => {
+const CurriculoVaga = () => { // Função do componente
+  const [userInfo, setUserInfo] = useState<UserType | null>(null); // useState para armazenar dados do usuário
+  const { id, idJob } = useParams(); // Capturando os parâmetros da URL
+
+  useEffect(() => { // useEffect para buscar dados
+    const fetchUserData = async () => {
+      try {
+        const data = await getUserById(id ?? "0");
+        setUserInfo(data);
+      } catch (error) {
+        console.error("Error fetching user info:", error);
+      }
+    };
+
+    fetchUserData(); // Chamando a função para buscar dados
+  }, [id]); // Adiciona params.id como dependência
+
   return (
     <div className="profile-container">
       <nav className="breadcrumb">
-        <a href="/">Listagem de Vagas</a> &gt;
-        <a href="/">Detalhe da Vaga</a> &gt;
-        <a className="active" href="/">Detalhe do Candidato</a>
+      <Link to={`/admin/List`}>Listagem de Vagas</Link> &gt;
+      <Link to={`/admin/DetalheVaga/${idJob}`}>Detalhe da Vaga</Link> &gt;
+      <Link to={`/admin/CurriculoVaga/${userInfo?.id}`} className="active"> Detalhe do Candidato </Link>
       </nav>
-      <hr/>
+      <hr />
       <div className="Sessaobtn">
-      <div className="header">
-        <h1>Marcela Rodrigues</h1>
-        <div className="score">
-          <span>93%</span>
+        <div className="header">
+          <h1>{userInfo?.name || "Carregando..."}</h1> {/* Exibe o nome do usuário */}
+          <div className="score">
+            <span>93%</span>
+          </div>
+        </div>
+        <div className="buttons">
+        <Link to={`/admin/DetalheVaga/${idJob}`}> <button>Iniciar Avaliação</button></Link>
+          <button>Agendar Entrevista</button>
+          <button>Iniciar Avaliação</button>
         </div>
       </div>
-      <div className="buttons">
-        <button>Detalhe da Vaga</button>
-        <button>Agendar Entrevista</button>
-        <button>Iniciar Avaliação</button>
-      </div>
-        </div>
-     
+
       <div className="main-content">
         <div className="left-section">
           <div className="profile-image">
-            <img src={fotomulher} alt="Marcela Rodrigues" />
+            <img src={userInfo?.picture || fotomulher} alt={userInfo?.name || "Usuário"} /> {/* Exibe a foto do usuário */}
           </div>
           <div className="contact-icons">
             <FiMail size={25} color="White" />
             <FiPhone size={25} color="White" />
-            <FiMoreHorizontal size={25} color="White"/>
+            <FiMoreHorizontal size={25} color="White" />
           </div>
         </div>
 
@@ -46,27 +66,25 @@ const CandidateProfile = () => {
 
       <div className="container">
         <div className="details">
-            <h2>Detalhes:</h2>
-            <p><strong>Endereço:</strong>   Rua dos Tupinambás, 572 - Bairro Umarizal <br/> - Belém, PA, CEP: 66050-540</p>
-            <p><strong>Email:</strong> marcelarod@gmail.com</p>
-            <p><strong>Celular:</strong> (99) 6756-5644</p>
+          <h2>Detalhes:</h2>
+          <p><strong>Endereço:</strong> Rua dos Tupinambás, 572 - Bairro Umarizal <br /> - Belém, PA, CEP: 66050-540</p>
+          <p><strong>Email:</strong> {userInfo?.email || "Carregando..."}</p> {/* Exibe o email do usuário */}
+          <p><strong>Celular:</strong> {userInfo?.phone || "Carregando..."}</p> {/* Exibe o celular do usuário */}
         </div>
         <div className="social">
-            <h2>Redes Sociais:</h2>
-            <ul>
-                <li><a href="#" target="_blank">Linkedin</a></li>
-                <li><a href="#" target="_blank" className="instagram">Instagram</a></li>
-                <li><a href="#" target="_blank" className="facebook">Facebook</a></li>
-                <li><a href="#" target="_blank" className="tumblr">Tumblr</a></li>
-                <li><a href="#" target="_blank" className="tumblr">Tumblr</a></li>
-            </ul>
+          <h2>Redes Sociais:</h2>
+          <ul>
+            <li><a href={userInfo?.socialLink} target="_blank" rel="noopener noreferrer">Linkedin</a></li>
+            {/* Adicione links das redes sociais conforme necessário */}
+          </ul>
         </div>
-    </div>
-    <div className="container">
+      </div>
+
+      <div className="container">
         <div className="sectionCurriculum">
-            <h1>Currículo Lattes</h1>
-            <hr/>
-            <p className="curriculum">
+          <h1>Currículo Lattes</h1>
+          <hr />
+          <p className="curriculum">
                 Doutora em Ciências da Educação pela (Universidad Internacional Tres Fronteras-Uninter 2019). 
                 Mestre em Enfermagem pela Universidade Federal da Paraíba. Especialista em Pneumologia Sanitária pelo Instituto
                  Hélio Fraga RJ (2007), Especialista em Enfermagem em Ginecologia e Obstetrícia pela Unyleya (2021). Especialista 
@@ -79,52 +97,17 @@ const CandidateProfile = () => {
         </div>
       </div>
       <div className="container">
-      <div className="sectionFormacao">
-            <h1>Formação Acadêmica</h1>
-            <hr/>
-            <div className="academic-entry">
-                <h3>2015 - 2019</h3>
-                <p><strong>Doutorado em CIÊNCIAS DA EDUCAÇÃO.</strong><br/>
-                Universidad Internacional Tres Fronteras, UNINTER, Paraguai.<br/>
-                Título: PROGRAMA SAÚDE E PREVENÇÃO EM ESCOLAS DO MUNICÍPIO DE CABEDELO/PB SOB A ÓTICA DE DOCENTES E GESTORES,<br/> Ano de obtenção: 2019.<br/>
-                Orientador: Dr. Defli López Roión.</p>
-            </div>
-
-            <div className="academic-entry">
-                <h3>2008 - 2010</h3>
-                <p><strong>Mestrado em Enfermagem.</strong><br/>
-                Universidade Federal da Paraíba, PB, Brasil.<br/>
-                Título: Tuberculose no Olhar de Docentes e Familiares: representação social, Ano de Obtenção: 2010.<br/>
-                Orientador: Antonila de Silva Oliveira.<br/>
-                Coordenador: Leniude Duarte de Sá.</p>
-            </div>
-
-            <div className="academic-entry">
-                <h3>2022 - 2023</h3>
-                <p><strong>Especialização em SAÚDE PÚBLICA COM ÊNFASE EM ESF - ESTRATÉGIA SAÚDE DA FAMÍLIA.</strong> (Carga Horária: 750h).<br/>
-                FACULDADE VENDA NOVA DO IMIGRANTE, IESX, PROV, Brasil.<br/>
-                Título: ATUAÇÃO DA ENFERMEIRA ASSOCIADA À PREVENÇÃO DO CÂNCER DE COLO UTERINO EM MULHERES ADULTAS: REVISÃO INTEGRATIVA.<br/>
-                Orientador: DSc. ANA PAULA RODRIGUES.</p>
-             </div>
-
-            <div className="academic-entry">
-                <h3>2021 - 2022</h3>
-                <p><strong>Especialização em Curso de Pós-Graduação Lato Sensu, Especialização.</strong> (Carga Horária: 360h).<br/>
-                Faculdade Unyleya, UNYLEYA, Brasil.<br/>
-                Título: Ginecologia e Obstetrícia.</p>
-            </div>
-
-            <div className="academic-entry">
-                <h3>2006-2007</h3>
-                <p><strong>Especialização em Pneumologia Sanitária.</strong> (Carga Horária: 500h).<br/>
-                Centro de Referência Professor Hélio Fraga/Escola Nacional de Saúde Pública, CRPHF/ENSP, Brasil.<br/>
-                Título: Implantação de busca ativa dos sintomáticos respiratórios, capacitando 100% dos <br/> agentes comunitários de saúde nas ações do programa de controle da tuberculose, visando aumento
-                 em 10% <br/>a descoberta de casos no município de Ribeirão das Neves no ano de 2007.<br/>
-                Bolsista do(a): Fundação para o Desenvolvimento Científico e Tecnológico em Saúde, FIOCRUZ, Brasil.</p>
-            </div>
-         </div>
+        <div className="sectionFormacao">
+          <h1>Formação Acadêmica</h1>
+          <hr />
+          <div className="academic-entry">
+            <h3>{userInfo?.education || "Carregando..."}</h3> {/* Exibe a educação do usuário */}
+            {/* Adicione mais detalhes de formação acadêmica conforme necessário */}
+          </div>
+        </div>
       </div>
     </div>
   );
 };
-export default CandidateProfile;
+
+export default CurriculoVaga; // Exporta o componente
