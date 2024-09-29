@@ -2,9 +2,11 @@ import { Button, Card, Col, Form, Input, Row } from "antd";
 import { useForm } from "antd/es/form/Form";
 import TextArea from "antd/es/input/TextArea";
 import { createJob } from "../../service/job";
+import { useNavigate } from "react-router-dom";
 
 export default function Register() {
   const [form] = useForm();
+  const navigate = useNavigate();
 
   const handleSubmit = () => {
     const formValues = form.getFieldsValue();
@@ -15,6 +17,7 @@ export default function Register() {
         company: { name: formValues.company },
         createDate: new Date().toLocaleDateString("pt-BR"),
       });
+      navigate(`/admin/list`);
       console.log("Response:", response);
     } catch (error) {
       console.error("Error:", error);
