@@ -40,7 +40,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true, // Rota padrão
-        element: <AdminHome />,
+        element: <ListLayout />,
       },
       {
         path: "register",
