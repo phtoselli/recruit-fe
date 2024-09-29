@@ -17,6 +17,8 @@ import Job from "./modules/client/Job.tsx";
 import Login from "./modules/client/Login.tsx";
 import Register from "./modules/client/Register.tsx";
 import ListLayout from "./modules/admin/List.tsx";
+import DetalheVaga from "./modules/admin/DetalheVaga.tsx";
+import CurriculoVaga from "./modules/admin/CurriculoVaga.tsx";
 
 const router = createBrowserRouter([
   {
@@ -63,6 +65,24 @@ const router = createBrowserRouter([
       {
         path: "job/:id",
         element: <Job />,
+      },
+    ],
+  },
+  {
+    path: "/admin",
+    element: <ClientLayout />,
+    children: [
+      {
+        index: true, // Rota padrão
+        element: <ClientHome />,
+      },
+      {
+        path: "DetalheVaga/:id",
+        element: <DetalheVaga />,
+      },
+      {
+        path: "CurriculoVaga/:id/:idJob",
+        element: <CurriculoVaga />,
       },
     ],
   },
