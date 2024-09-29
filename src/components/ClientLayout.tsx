@@ -37,7 +37,9 @@ export default function ClientLayout() {
               <Text style={{ color: "#f0f0f0" }}>
                 Olá {user?.name}, seja bem vindo(a)!
               </Text>
-              <Button onClick={sair}>Sair</Button>
+              <Button onClick={sair} style={{ marginLeft: "20px" }}>
+                Sair
+              </Button>
             </Flex>
           </Col>
         </Row>

@@ -4,7 +4,7 @@ import Title from "antd/es/typography/Title";
 import Paragraph from "antd/es/typography/Paragraph";
 
 import { FilePenLine, User } from "lucide-react";
-import { Card, Col, Divider, Flex, List, Row } from "antd";
+import { Breadcrumb, Card, Col, Divider, Flex, List, Row } from "antd";
 import { Job } from "../../utils/types/job";
 import { useEffect, useState } from "react";
 import { getJobs } from "../../service/job";
@@ -21,6 +21,11 @@ export default function Home() {
   return (
     <Row>
       <Col span={24}>
+        <Breadcrumb>
+          <Breadcrumb.Item>Listagem de Vagas</Breadcrumb.Item>
+        </Breadcrumb>
+      </Col>
+      <Col span={24} style={{ marginTop: "20px" }}>
         <Flex>
           <Title level={2}>Vagas disponíveis</Title>
           <Paragraph></Paragraph>
@@ -40,17 +45,13 @@ export default function Home() {
             dataSource={jobsList?.map((job: Job) => ({
               index: job.id,
               title: job.name,
-              description: `criado em ${job.createDate}`,
+              description: `Data de abertura: ${job.createDate}`,
               content: job.description,
             }))}
             renderItem={(item: any) => (
               <List.Item
                 key={item?.title}
                 actions={[
-                  <Flex align="center" justify="center" gap={8}>
-                    <User size={16} />
-                    inscritos
-                  </Flex>,
                   <Flex align="center" justify="center" gap={8}>
                     <Link to={`/client/job/${item?.index}`}>
                       <FilePenLine size={16} />
