@@ -1,44 +1,58 @@
-import { Avatar, Button, Card, Col, Divider, Flex, Form, Input, Row, Space } from "antd";
+import {
+  Avatar,
+  Button,
+  Card,
+  Col,
+  Divider,
+  Flex,
+  Form,
+  Input,
+  message,
+  Row,
+  Space,
+} from "antd";
 import { useForm } from "antd/es/form/Form";
 
 import Text from "antd/es/typography/Text";
 import Title from "antd/es/typography/Title";
 import TextArea from "antd/es/input/TextArea";
 import Paragraph from "antd/es/typography/Paragraph";
-import { applyToJob } from "../../service/job";
+import { applyToJob, getJobById } from "../../service/job";
 import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Job as JobType } from "../../utils/types/job";
 
 export default function Job() {
   const [form] = useForm();
   const params = useParams();
 
-  const user = JSON.parse(localStorage.getItem('user')!);
+  const user = JSON.parse(localStorage.getItem("user")!);
 
-  // const [jobInfo, setJobInfo] = useState<any | null>(null);
+  const [jobInfo, setJobInfo] = useState<JobType | null>(null);
 
   const onSubmit = () => {
     const formValues = form.getFieldsValue();
 
     const userData = {
       name: formValues.name,
-    }
+    };
 
     if (formValues && params.id) {
-      applyToJob(params.id, user.id, userData)
+      applyToJob(params.id, user.id, userData);
     }
-  }
+  };
 
   // Implementar chamada para pegar informações da Vaga
-  // useEffect(() => {
-  //   getJobById(params.id).then((data: any) => setJobInfo(data));
-  // }, []);
+  useEffect(() => {
+    getJobById(params?.id ?? "0").then((data: any) => setJobInfo(data));
+  }, []);
 
   return (
     <Row gutter={[16, 16]}>
       <Col span={24}>
         <Flex vertical gap={8}>
           <Title level={2}>Inscreva-se</Title>
-          <Paragraph>Nome da vaga</Paragraph>
+          <Paragraph>{jobInfo?.name}</Paragraph>
         </Flex>
       </Col>
 
@@ -46,49 +60,47 @@ export default function Job() {
         <Divider />
       </Col>
 
-      <Col span={12} style={{height: '100%'}}>
-        <Card title="Descrição da vaga" style={{padding: '24px', height: '100%'}} size="small">
+      <Col span={12} style={{ height: "100%" }}>
+        <Card
+          title="Descrição da vaga"
+          style={{ padding: "24px", height: "100%" }}
+          size="small"
+        >
           <Row>
             <Col span={12}>
-              <Avatar size={50} />
-              <Title level={3}>Nome empresa</Title>
-              <Paragraph>lorem</Paragraph>
+              <Avatar size={50} src={`https://picsum.photos/200/300`} />
+              <Title level={3}>{jobInfo?.company?.name}</Title>
+              <Paragraph>{jobInfo?.company?.description}</Paragraph>
             </Col>
             <Col span={12}>
               <Flex vertical gap={16}>
                 <Space>
-                  <Text>Data</Text>
+                  <Text>{jobInfo?.createDate?.toString() ?? "-"}</Text>
                 </Space>
                 <Space>
-                  <Text>Data</Text>
+                  <Text>{jobInfo?.expireDate?.toString() ?? "-"}</Text>
                 </Space>
               </Flex>
             </Col>
 
             <Col span={24}>
               <Title level={4}>Descrição da vaga</Title>
-              <Paragraph>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, sint officiis perspiciatis numquam explicabo totam! Alias omnis id doloribus nihil cupiditate praesentium soluta numquam! Ex perferendis aliquid quibusdam velit quasi?
-              </Paragraph>
+              <Paragraph>{jobInfo?.position}</Paragraph>
             </Col>
             <Col span={24}>
               <Title level={4}>Formação necessária</Title>
-              <Paragraph>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, sint officiis perspiciatis numquam explicabo totam! Alias omnis id doloribus nihil cupiditate praesentium soluta numquam! Ex perferendis aliquid quibusdam velit quasi?
-              </Paragraph>
-            </Col>
-            <Col span={24}>
-              <Title level={4}>Descrição da empresa</Title>
-              <Paragraph>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, sint officiis perspiciatis numquam explicabo totam! Alias omnis id doloribus nihil cupiditate praesentium soluta numquam! Ex perferendis aliquid quibusdam velit quasi?
-              </Paragraph>
+              <Paragraph>{jobInfo?.education}</Paragraph>
             </Col>
           </Row>
         </Card>
       </Col>
 
-      <Col span={12} style={{height: '100%'}}>
-        <Card title="Preencha seus dados" style={{padding: '24px', height: '100%'}} size="small">
+      <Col span={12} style={{ height: "100%" }}>
+        <Card
+          title="Preencha seus dados"
+          style={{ padding: "24px", height: "100%" }}
+          size="small"
+        >
           <Form form={form} layout="vertical" onFinish={onSubmit} size="large">
             <Row gutter={[16, 2]}>
               <Col span={12}>

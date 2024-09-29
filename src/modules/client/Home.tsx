@@ -16,7 +16,7 @@ export default function Home() {
     getJobs().then((data: any) => {
       setJobsList(data);
     });
-  }, [])
+  }, []);
 
   return (
     <Row>
@@ -44,27 +44,27 @@ export default function Home() {
               content: job.description,
             }))}
             renderItem={(item: any) => (
-                <List.Item
-                  key={item.title}
-                  actions={[
-                    <Flex align="center" justify="center" gap={8}>
-                      <User size={16} />
-                      inscritos
-                    </Flex>,
-                    <Flex align="center" justify="center" gap={8}>
-                      <Link to={`/job/${item.index}`}>
-                        <FilePenLine size={16} />
-                        Inscrever-se
-                      </Link>
-                    </Flex>,
-                  ]}
-                  >
-                    <List.Item.Meta
-                      title={<Title level={4}>{item.title}</Title>}
-                      description={item.description}
-                    />
-                    {item.content}
-                </List.Item>
+              <List.Item
+                key={item?.title}
+                actions={[
+                  <Flex align="center" justify="center" gap={8}>
+                    <User size={16} />
+                    inscritos
+                  </Flex>,
+                  <Flex align="center" justify="center" gap={8}>
+                    <Link to={`/client/job/${item?.index}`}>
+                      <FilePenLine size={16} />
+                      Inscrever-se
+                    </Link>
+                  </Flex>,
+                ]}
+              >
+                <List.Item.Meta
+                  title={<Title level={4}>{item?.title}</Title>}
+                  description={item?.description}
+                />
+                {item?.content}
+              </List.Item>
             )}
           />
         </Card>

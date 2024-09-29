@@ -3,7 +3,7 @@ import { Filter, Job } from "../utils/types/job";
 import { message } from "antd";
 
 // const API_URL = 'https://fiap-backend-recruta-production.up.railway.app';
-const API_URL = "http://localhost:8080";
+const API_URL = "http://localhost:8081";
 
 // Função para criar uma vaga
 export const createJob = (jobData: Job) => {
@@ -39,7 +39,7 @@ export const getJobs = async () => {
 // Função para localizar uma vaga por ID
 export const getJobById = (id: string) => {
   message.loading("Buscando vaga...", 0);
-  axios
+  return axios
     .get(`${API_URL}/job/${id}`)
     .then((response) => {
       message.destroy();
@@ -85,7 +85,7 @@ export const deleteJob = (id: string) => {
 // Função para aplicar a uma vaga
 export const applyToJob = (jobId: string, userId: string, userData: any) => {
   message.loading("Aplicando para vaga...", 0);
-  axios
+  return axios
     .post(`${API_URL}/job/${jobId}/apply`, { id: userId, userData })
     .then(() => {
       message.destroy();

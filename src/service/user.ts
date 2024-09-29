@@ -3,7 +3,7 @@ import { message } from "antd";
 import { Filter, Login, User } from "../utils/types/user";
 
 // const API_URL = 'https://fiap-backend-recruta-production.up.railway.app';
-const API_URL = "http://localhost:8080";
+const API_URL = "http://localhost:8081";
 
 // Função para localizar todos os usuários
 export const getAllUsers = () => {
@@ -40,7 +40,7 @@ export const getUserById = (id: string) => {
 // Função para registrar um novo usuário
 export const registerUser = (userData: User) => {
   message.loading("Registrando usuário...", 0);
-  axios
+  return axios
     .post(`${API_URL}/user/register`, userData)
     .then((result) => {
       message.destroy();
@@ -56,7 +56,7 @@ export const registerUser = (userData: User) => {
 // Função para login de usuário
 export const userLogin = (loginData: Login) => {
   message.loading("Efetuando login...", 0);
-  axios
+  return axios
     .post(`${API_URL}/user/login`, loginData)
     .then((result) => {
       message.destroy();

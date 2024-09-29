@@ -13,6 +13,7 @@ export default function Register() {
       const response = createJob({
         ...formValues,
         company: { name: formValues.company },
+        createDate: new Date().toLocaleDateString("pt-BR"),
       });
       console.log("Response:", response);
     } catch (error) {
