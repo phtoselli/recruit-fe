@@ -1,33 +1,43 @@
-import { Button, Card, Flex, Form, Image, Input } from "antd";
+import { Button, Card, Flex, Form, Image, Input, message } from "antd";
 import { useForm } from "antd/es/form/Form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Text from "antd/es/typography/Text";
 
-import logo from '../../assets/logo-black.svg';
+import logo from "../../assets/logo-black.svg";
+import { userLogin } from "../../service/user";
 
 export default function Login() {
   const [form] = useForm();
+  const navigate = useNavigate();
 
-  const onFinish = () => {
-    // const formValues = form.getFieldsValue();
+  const onFinish = async () => {
+    const formValues = form.getFieldsValue();
 
-    // if (formValues.email && formValues.password) {
-    //   userLogin({email: formValues.email, password: formValues.password})
-    //     .then((dataUser: any) => {
-    //       if (dataUser) {
-    //         localStorage.setItem('user', JSON.stringify(dataUser));
-    //         return redirect(`/${dataUser.user.role}`);
-    //       }
-    //     });
-    // } else {
-    //   message.warning('Informe corretamente o email e senha.', 4);
-    // }
-  }
+    if (formValues.email && formValues.password) {
+      userLogin(formValues)
+        .then((dataUser: any) => {
+          if (dataUser) {
+            localStorage.setItem("user", JSON.stringify(dataUser));
+            navigate(`/${dataUser.role}`);
+          }
+        })
+        .catch((_) => {
+          message.warning("Informe corretamente o email e senha.", 4);
+        });
+    } else {
+      message.warning("Informe corretamente o email e senha.", 4);
+    }
+  };
 
   return (
-    <Flex align="center" justify="center" vertical style={{width: '100vw', height: '100vh', backgroundColor: '#fdfdfd'}}>
+    <Flex
+      align="center"
+      justify="center"
+      vertical
+      style={{ width: "100vw", height: "100vh", backgroundColor: "#fdfdfd" }}
+    >
       <Card>
-        <Flex align="center" justify="center" style={{padding: '32px 0px'}}>
+        <Flex align="center" justify="center" style={{ padding: "32px 0px" }}>
           <Image preview={false} src={logo} width={150} />
         </Flex>
         <Flex vertical gap={8}>
@@ -40,10 +50,14 @@ export default function Login() {
               <Input.Password />
             </Form.Item>
           </Form>
-          <Button type="primary" onClick={() => form.submit()}>Entrar</Button>
-          <Text type="secondary">Não possui uma conta? <Link to="/register">Cadastre-se</Link></Text>
+          <Button type="primary" onClick={() => form.submit()}>
+            Entrar
+          </Button>
+          <Text type="secondary">
+            Não possui uma conta? <Link to="/register">Cadastre-se</Link>
+          </Text>
         </Flex>
       </Card>
     </Flex>
-  )
+  );
 }
