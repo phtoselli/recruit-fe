@@ -2,8 +2,7 @@ import axios from "axios";
 import { message } from "antd";
 import { Filter, Login, User } from "../utils/types/user";
 
-// const API_URL = 'https://fiap-backend-recruta-production.up.railway.app';
-const API_URL = "http://localhost:8081";
+const API_URL = "https://fiap-backend-recruta-production.up.railway.app";
 
 // Função para localizar todos os usuários
 export const getAllUsers = () => {

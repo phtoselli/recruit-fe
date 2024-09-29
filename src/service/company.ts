@@ -2,8 +2,7 @@ import axios from "axios";
 import { message } from "antd";
 import { Company, Filter } from "../utils/types/company";
 
-// const API_URL = 'https://fiap-backend-recruta-production.up.railway.app';
-const API_URL = "http://localhost:8081";
+const API_URL = "https://fiap-backend-recruta-production.up.railway.app";
 
 // Criar empresa
 export const createCompany = (companyData: Company) => {
