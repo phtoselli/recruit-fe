@@ -6,7 +6,7 @@ import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import App from "./App.tsx";
-import List from "./modules/admin/List.tsx";
+
 import ErrorPage from "./modules/ErrorPage.tsx";
 import AdminHome from "./modules/admin/Home.tsx";
 import ClientHome from "./modules/client/Home.tsx";
@@ -16,25 +16,26 @@ import ClientLayout from "./components/ClientLayout.tsx";
 import Job from "./modules/client/Job.tsx";
 import Login from "./modules/client/Login.tsx";
 import Register from "./modules/client/Register.tsx";
+import ListLayout from "./modules/admin/List.tsx";
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <App />,
     errorElement: <ErrorPage />,
   },
   {
-    path: '/login',
+    path: "/login",
     element: <Login />,
     errorElement: <ErrorPage />,
   },
   {
-    path: '/register',
+    path: "/register",
     element: <Register />,
     errorElement: <ErrorPage />,
   },
   {
-    path: '/admin',
+    path: "/admin",
     element: <AdminLayout />,
     children: [
       {
@@ -42,17 +43,17 @@ const router = createBrowserRouter([
         element: <AdminHome />,
       },
       {
-        path: 'register',
+        path: "register",
         element: <AdminRegister />,
       },
       {
-        path: 'list',
-        element: <List />,
+        path: "list",
+        element: <ListLayout />,
       },
     ],
   },
   {
-    path: '/client',
+    path: "/client",
     element: <ClientLayout />,
     children: [
       {
@@ -60,7 +61,7 @@ const router = createBrowserRouter([
         element: <ClientHome />,
       },
       {
-        path: 'job/:id',
+        path: "job/:id",
         element: <Job />,
       },
     ],
@@ -70,5 +71,5 @@ const router = createBrowserRouter([
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <RouterProvider router={router} />
-  </StrictMode>,
+  </StrictMode>
 );

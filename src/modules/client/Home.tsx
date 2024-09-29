@@ -46,7 +46,7 @@ export default function Home() {
               index: job.id,
               title: job.name,
               description: `Data de abertura: ${job.createDate}`,
-              content: job.description,
+              content: job.jobDescription,
             }))}
             renderItem={(item: any) => (
               <List.Item

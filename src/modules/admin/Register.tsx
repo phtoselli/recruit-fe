@@ -8,7 +8,7 @@ export default function Register() {
 
   const handleSubmit = () => {
     const formValues = form.getFieldsValue();
-
+    console.log(formValues);
     try {
       const response = createJob({
         ...formValues,
@@ -58,7 +58,7 @@ export default function Register() {
               </Col>
 
               <Col span={24}>
-                <Form.Item label="Descrição da Vaga" name="description">
+                <Form.Item label="Descrição da Vaga" name="jobDescription">
                   <TextArea rows={4} />
                 </Form.Item>
               </Col>
