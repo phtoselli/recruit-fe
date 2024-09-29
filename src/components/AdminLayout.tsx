@@ -10,22 +10,17 @@ import logo from "../assets/logo-white.svg";
 
 import Text from "antd/es/typography/Text";
 import { Button, Divider, Flex, Image, Layout, Menu, theme } from "antd";
-import { FilePenLine, House, LayoutList } from "lucide-react";
+import { FilePenLine, House, LayoutList, LogOut } from "lucide-react";
 
 const { Header, Content, Sider } = Layout;
 
 export default function AdminLayout() {
-  const navigate = useNavigate();
   const { pathname } = useLocation();
   const user = JSON.parse(localStorage.getItem("user")!);
 
   if (!user) {
     redirect("/login");
   }
-  const sair = () => {
-    localStorage.removeItem("user");
-    navigate(`/login`);
-  };
 
   const {
     token: { colorBgContainer },
@@ -49,6 +44,12 @@ export default function AdminLayout() {
       path: "/admin/list",
       label: "Lista de vagas",
       icon: <LayoutList />,
+    },
+    {
+      key: "/",
+      path: "/",
+      label: "Sair",
+      icon: <LogOut />,
     },
   ];
 
@@ -83,7 +84,6 @@ export default function AdminLayout() {
         <Header style={{ backgroundColor: colorBgContainer, padding: "16px" }}>
           <Flex>
             <Text>Olá {user?.name}, bem vindo(a) de volta!</Text>
-            <Button onClick={sair}>Sair</Button>
           </Flex>
         </Header>
 
