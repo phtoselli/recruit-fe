@@ -109,6 +109,7 @@ export default function Job() {
             <Col span={24}>
               <Title level={4}>Descrição</Title>
               <Paragraph>
+                {jobInfo?.jobDescription}
                 Buscamos um profissional proativo para atuar em projetos
                 desafiadores, com domínio em diversas tecnologias.
               </Paragraph>

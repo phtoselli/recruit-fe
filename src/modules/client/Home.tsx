@@ -12,10 +12,24 @@ import { getJobs } from "../../service/job";
 export default function Home() {
   const [jobsList, setJobsList] = useState<Job[] | null>(null);
 
+
   useEffect(() => {
-    getJobs().then((data: any) => {
-      setJobsList(data);
-    });
+    const fetchJobs = async () => {
+      try {
+        const data = await getJobs();
+        if (Array.isArray(data)) {
+          setJobsList(data); // Atualiza a lista de vagas se data for um array
+        } else {
+          console.error('Data is not an array:', data);
+          setJobsList([]); // Se não for um array, define como vazio
+        }
+      } catch (error) {
+        console.error('Error fetching jobs:', error);
+        setJobsList([]); // Em caso de erro, também define como vazio
+      }
+    };
+
+    fetchJobs();
   }, []);
 
   return (
@@ -46,7 +60,7 @@ export default function Home() {
               index: job.id,
               title: job.name,
               description: `Data de abertura: ${job.createDate}`,
-              content: job.description,
+              content: job.jobDescription,
             }))}
             renderItem={(item: any) => (
               <List.Item

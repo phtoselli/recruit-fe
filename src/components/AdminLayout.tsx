@@ -28,10 +28,10 @@ export default function AdminLayout() {
 
   const menuItems = [
     {
-      key: "/admin",
-      path: "/admin",
-      label: "Inicio",
-      icon: <House />,
+      key: "/admin/list",
+      path: "/admin/list",
+      label: "Lista de vagas",
+      icon: <LayoutList />,
     },
     {
       key: "/admin/register",
@@ -39,12 +39,7 @@ export default function AdminLayout() {
       label: "Cadastro de vagas",
       icon: <FilePenLine />,
     },
-    {
-      key: "/admin/list",
-      path: "/admin/list",
-      label: "Lista de vagas",
-      icon: <LayoutList />,
-    },
+
     {
       key: "/",
       path: "/",

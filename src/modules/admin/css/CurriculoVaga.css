@@ -1,0 +1,234 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Mushing&display=swap');
+
+
+  .profile-container{
+    margin-left: 50px;
+  }
+  .breadcrumb {
+    font-size: 1.1em;
+    color: #7d7d7d;
+    margin-bottom: 20px;
+  }
+  
+  .breadcrumb a {
+    text-decoration: none;
+    color: #007bff;
+    gap: 10px;
+    margin-right: 10px; /* Espaçamento entre os itens */
+    margin-left: 10px;
+  }
+  .breadcrumb .active {
+    color: #000;; /* Cor ao estar selecionado */
+    font-weight: bold;
+  }
+
+  .header {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+  
+  .header h1 {
+    font-size: 1.8em;
+    font-family: 'Mushing', sans-serif;
+    color: #373F41;
+  }
+  
+  .score {
+    background-color: #e0f7e9;
+    color: green;
+    border-radius: 20px;
+    width: 70px;
+    height: 25px;
+    padding-left: 22px;
+    padding-top: 3px;
+    font-size: 1em;
+  }
+  
+  .main-content {
+    display: flex;
+    gap: 200px;
+    margin-top: 20px;
+  }
+  
+  .left-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .profile-image img {
+    border-radius: 20px;
+    width: 125%;
+    height: 380px;
+  }
+  
+  .contact-icons {
+    display: flex;
+    justify-content: space-around;
+    width: 100px;
+    margin-top: -40px;
+    margin-left: 80px;
+  }
+  
+  .right-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .map-image {
+    border-radius: 10px;
+    width: 100%;
+    height: 380px;
+  }
+  
+  .contact-section {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .details, .social-media {
+    width: 45%;
+  }
+  
+  .details p, .social-media ul {
+    margin-bottom: 10px
+  }
+  .social-media ul {
+    list-style-type: disc; 
+    padding: 0;
+  }
+  .Sessaobtn{
+    display: flex;
+    gap: 380px;
+  }
+  .buttons {
+    display: flex;
+    gap: 30px;
+    margin-top: 40px;
+  }
+  
+  button {
+    padding: 5px 10px;
+    border: 1px solid #007bff;
+    background-color: white;
+    color: #007bff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #007bff;
+    color: white;
+  }
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 40px;
+}
+
+.details, .social {
+    width: 45%;
+}
+
+.details h2 {
+    margin-bottom: 40px;
+    font-size: 1.2em;
+}
+.social h2 {
+  margin-bottom: 40px;
+  font-size: 1.2em;
+}
+
+.details p, .social p {
+    margin: 8px 0;
+    line-height: 1.6;
+}
+
+.social ul {
+    list-style-type: disc;
+    padding: 0;
+    margin-left: 20px;
+}
+
+.social ul li {
+    margin-bottom: 8px;
+}
+
+.social ul li a {
+    text-decoration: none;
+    color: #0073b1; /* LinkedIn color */
+    font-size: 1.1em;
+}
+
+.social ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Adjust color of social media links */
+.social ul li a.facebook {
+    color: #1877f2; /* Facebook color */
+}
+
+.social ul li a.instagram {
+    color: #e4405f; /* Instagram color */
+}
+
+.social ul li a.tumblr {
+    color: #35465c; /* Tumblr color */
+}
+
+.academic-entry {
+  margin-bottom: 20px;
+}
+
+.academic-entry h3 {
+  font-size: 1.2em;
+  margin: 5px 0;
+}
+
+.academic-entry span {
+  display: block;
+  font-size: 0.9em;
+  color: #555;
+}
+
+.academic-entry strong {
+  font-weight: bold;
+}
+
+.curriculum {
+  text-align: justify;
+}
+.sectionCurriculum {
+  margin-bottom: 40px;
+}
+.sectionCurriculum p{
+  margin-top: 40px;
+}
+.sectionCurriculum h1{
+  margin-bottom: 20px;
+}
+.sectionFormacao p{
+  margin-top: 40px;
+}
+.sectionFormacao h3{
+  margin-top: 40px;
+}
+.sectionFormacao h1{
+  margin-bottom: 20px;
+}
+.academic-entry{
+  display: flex;
+  gap: 40px;
+}

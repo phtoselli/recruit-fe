@@ -4,7 +4,7 @@ import { User } from "./user";
 export interface Job {
   id?: number;
   name: string;
-  description: string;
+  jobDescription: string;
   position: string;
   education: string;
   createDate: Date;
